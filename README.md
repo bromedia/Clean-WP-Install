@@ -12,4 +12,5 @@ Just place clean-wp-install.php inside the Wordpress directory, and click "Proce
 <ul>
 <li>Fix the part of the script that copies applicable DB settings to the new wp-config.php file.</li>
 <li>Allow the /new directory to be customised.</li>
+<li>Copy media from wp-content/uploads into the /new Wordpress directory.</li>
 </ul>
