@@ -1,6 +1,6 @@
-# Clean-WP-Install
+# Clean WP Install
 
-This script was created to help remove malware from a Wordpress site. The script scans through the directory it's been placed in, detects whether or not Wordpress exists in that directory, and downloads a clean copy of Wordpress and any applicable plugins into a /new directory.
+This script was created to help combat Wordpress sites that have been infected by malware. The script scans through the directory it's been placed in, detects whether or not Wordpress exists in that directory, and downloads a clean copy of Wordpress and any applicable plugins into a /new directory, straight from the Wordpress repository.
 
 The script currently does not download themes, or any plugins that do not exist in the free Wordpress repository.
 
