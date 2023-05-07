@@ -14,3 +14,5 @@ Just place clean-wp-install.php inside the Wordpress directory, and click "Proce
 <li>Allow the /new directory to be customised.</li>
 <li>Copy media from wp-content/uploads into the /new Wordpress directory.</li>
 </ul>
+
+Created by Conor Campbell at <a href="https://bromedia.co.za">Bro Media</a>
