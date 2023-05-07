@@ -4,7 +4,9 @@ This script was created to help combat Wordpress sites that have been infected b
 
 The script currently does not work on themes, nor will it be able to download any plugins that do not exist in the free Wordpress repository.
 
-<b>Requires allow_url_fopen to be enabled on the server.</b>
+Just place clean-wp-install.php inside the Wordpress directory, and click "Proceed".
+
+<b>Important: </b>Requires allow_url_fopen to be enabled on the server.
 
 <b>Still to do:</b>
 <ul>
