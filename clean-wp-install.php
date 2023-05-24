@@ -60,41 +60,46 @@ if (isset($_POST['proceed']))
                         rmdir($dir);
                         $debug .= 'Wordpress moved to \'new\' folder!<br />';
                         
-                        /*
+                        
 						// Check if both files exist
 						if (file_exists('wp-config.php') && file_exists('new/wp-config-sample.php')) {
 						
-						  // Read contents of wp-config.php
-						  $wp_config = file_get_contents('wp-config.php');
-						
-						  // Extract values for DB_NAME, DB_USER, DB_PASSWORD, and DB_HOST
-						  preg_match("/define\(\s*\'DB_NAME\',\s*\'(.+)\'\s*\);/", $wp_config, $db_name);
-						  preg_match("/define\(\s*\'DB_USER\',\s*\'(.+)\'\s*\);/", $wp_config, $db_user);
-						  preg_match("/define\(\s*\'DB_PASSWORD\',\s*\'(.+)\'\s*\);/", $wp_config, $db_password);
-						  preg_match("/define\(\s*\'DB_HOST\',\s*\'(.+)\'\s*\);/", $wp_config, $db_host);
-						
-						  // Read contents of wp-config-sample.php
-						  $wp_config_sample = file_get_contents('/new/wp-config-sample.php');
-						
-						  // Replace values with those from wp-config.php
-						  $wp_config_sample = preg_replace("/define\(\s*\'DB_NAME\',\s*\'(.+)\'\s*\);/", "define('DB_NAME', '" . $db_name[1] . "');", $wp_config_sample);
-						  $wp_config_sample = preg_replace("/define\(\s*\'DB_USER\',\s*\'(.+)\'\s*\);/", "define('DB_USER', '" . $db_user[1] . "');", $wp_config_sample);
-						  $wp_config_sample = preg_replace("/define\(\s*\'DB_PASSWORD\',\s*\'(.+)\'\s*\);/", "define('DB_PASSWORD', '" . $db_password[1] . "');", $wp_config_sample);
-						  $wp_config_sample = preg_replace("/define\(\s*\'DB_HOST\',\s*\'(.+)\'\s*\);/", "define('DB_HOST', '" . $db_host[1] . "');", $wp_config_sample);
-						
-						  // Write modified contents to wp-config.php
-						  file_put_contents('/wp-config.php', $wp_config_sample);
-						
-						  // Rename wp-config-sample.php to wp-config.php
-						  rename('new/wp-config-sample.php', 'new/wp-config.php');
-						
-						  $debug .= 'Files updated successfully.';
+						    // Read contents of wp-config.php
+                            $wp_config = file_get_contents('wp-config.php');
+
+                            // Extract values from wp-config.php using regex
+                            preg_match("/define\s*\(\s*'DB_NAME',\s*'([^']+)'\s*\);/", $wp_config, $db_name_match);
+                            preg_match("/define\s*\(\s*'DB_USER',\s*'([^']+)'\s*\);/", $wp_config, $db_user_match);
+                            preg_match("/define\s*\(\s*'DB_PASSWORD',\s*'([^']+)'\s*\);/", $wp_config, $db_password_match);
+                            preg_match("/define\s*\(\s*'DB_HOST',\s*'([^']+)'\s*\);/", $wp_config, $db_host_match);
+
+                            // Read contents of new/wp-config-sample.php
+                            $new_wp_config = file_get_contents('new/wp-config-sample.php');
+
+                            // Replace values in new/wp-config-sample.php with the extracted values
+                            $new_wp_config = preg_replace("/define\s*\(\s*'DB_NAME',\s*'([^']+)'\s*\);/",
+                                "define( 'DB_NAME', '{$db_name_match[1]}' );", $new_wp_config);
+                            $new_wp_config = preg_replace("/define\s*\(\s*'DB_USER',\s*'([^']+)'\s*\);/",
+                                "define( 'DB_USER', '{$db_user_match[1]}' );", $new_wp_config);
+                            $new_wp_config = preg_replace("/define\s*\(\s*'DB_PASSWORD',\s*'([^']+)'\s*\);/",
+                                "define( 'DB_PASSWORD', '{$db_password_match[1]}' );", $new_wp_config);
+                            $new_wp_config = preg_replace("/define\s*\(\s*'DB_HOST',\s*'([^']+)'\s*\);/",
+                                "define( 'DB_HOST', '{$db_host_match[1]}' );", $new_wp_config);
+
+                            // Save the modified contents back to new/wp-config-sample.php
+                            file_put_contents('new/wp-config-sample.php', $new_wp_config);
+                            
+						    // Rename wp-config-sample.php to wp-config.php
+						    rename('new/wp-config-sample.php', 'new/wp-config.php');
+                            
+						    $debug .= 'Files updated successfully.';
 						
 						} else {
 							$debug .= 'One or both wp-config.php files do not exist.';
 						}
-                        */
+                        
                     }
+                    
                     // Get the list of plugins
                     $plugins_dir = 'wp-content/plugins/';
                     $plugins = scandir($plugins_dir);
